@@ -15,8 +15,6 @@ export default function Home() {
 
       setLongitude(long);
       setLatitude(lat);
-      console.log(longitude);
-      console.log(latitude);
     })
   };
 
