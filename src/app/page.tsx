@@ -28,9 +28,9 @@ export default function Home() {
   // Technical Debt!
   // searchParams encodes all character commas which is not the desired behavior
   // https://stackoverflow.com/a/73558274
-  let current_values = ['temperature', 'relative_humidity_2m', 'apparent_temperature', 'weather_code']
+  let current_values = ['temperature', 'dew_point_2m', 'apparent_temperature', 'weather_code']
   url.searchParams.set('current','CURRENT_PLACEHOLDER')
-  let hourly_values = ['temperature_2m','relative_humidity_2m','apparent_temperature','precipitation_probability','precipitation','rain','showers','snowfall','snow_depth','weather_code','cloud_cover']
+  let hourly_values = ['temperature_2m','dew_point_2m','apparent_temperature','precipitation_probability','precipitation','rain','showers','snowfall','snow_depth','weather_code','cloud_cover']
   url.searchParams.set('hourly', 'HOURLY_PLACEHOLDER')
   url.searchParams.set('temperature_unit', 'fahrenheit')
   url.searchParams.set('timezone', 'auto')
@@ -67,7 +67,7 @@ export default function Home() {
     body = (
       <div>
         <div className="mx-auto flex max-w-sm items-center bg-black p-6 shadow-lg">
-          <WeatherHeadline wmoCode={data.current.weather_code} temperature={data.current.temperature} apparentTemperature={data.current.apparent_temperature} />
+          <WeatherHeadline wmoCode={data.current.weather_code} temperature={data.current.temperature} apparentTemperature={data.current.apparent_temperature} dewPoint={data.current.dew_point_2m} />
         </div>
         <div className="mx-auto flex max-w-sm items-center bg-black p-6 shadow-lg">
           <p className="text-white">Longitude: {longitude}, Latitude: {latitude}</p>

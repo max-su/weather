@@ -4,14 +4,16 @@ import SunnyIcon from "../../assets/day.svg";
 import CloudyIcon from "../../assets/cloudy.svg";
 import SnowyIcon from "../../assets/snowy-1.svg";
 import RainyIcon from '../../assets/rainy-1.svg';
+import { calculatePaceAdjustment } from '../utils';
 import React from "react";
 
 interface Props {
   wmoCode: number
   temperature: number
   apparentTemperature: number
+  dewPoint: number
 }
-export const WeatherHeadline: React.FC<Props> = ({wmoCode, temperature, apparentTemperature}) => {
+export const WeatherHeadline: React.FC<Props> = ({wmoCode, temperature, apparentTemperature, dewPoint}) => {
   // 0 -> 2 Sunny
   // 3 -> 20 Cloudy
   // 20 -> 29 Rain just before, can call cloudy?
@@ -46,12 +48,16 @@ export const WeatherHeadline: React.FC<Props> = ({wmoCode, temperature, apparent
     imgIcon = <Image src={SnowyIcon} width={128} height={128} alt="Snowy Day" />
   }
 
+  const paceAdjustmentRate = calculatePaceAdjustment(temperature, dewPoint);
+
   return (
     <div className="mx-auto flex max-w-sm items-center bg-black p-6 shadow-lg">
       {imgIcon}
       <div className="-ml-5">
         <div className="text-5xl font-medium text-white">{temperature}°F</div>
         <div className="text-sm font-medium text-white">Feels {apparentTemperature}°F</div>
+        <div className="text-sm font-medium text-white">Dew Point: {dewPoint}°F</div>
+        <div className="text-sm font-medium text-white">{paceAdjustmentRate === 100.0 ? "Running not recommended" : `Adjust running by ${paceAdjustmentRate}%`} </div>
       </div>
     </div>
   );

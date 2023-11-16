@@ -8,6 +8,11 @@ export default function Navbar() {
           <span className="text-xl font-semibold tracking-tight">Weather</span>
         </Link>
       </div>
+      <div className="mr-6 flex flex-shrink-0 items-center text-white">
+      <Link href="http://maximumperformancerunning.blogspot.com/2013/07/temperature-dew-point.html">
+          <span className="text-xl font-semibold tracking-tight">Temperature + Dew Point For Pace Adjustments</span>
+        </Link>
+      </div>
     </nav>
   );
 }
