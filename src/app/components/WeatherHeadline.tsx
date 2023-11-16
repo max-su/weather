@@ -43,7 +43,7 @@ export const WeatherHeadline: React.FC<Props> = ({wmoCode, temperature, apparent
     imgIcon = <Image src={RainyIcon} width={128} height={128} alt="Rainy Day" />
   }
   else if (70 <= wmoCode && wmoCode <= 79) {
-    imgIcon = <Image src={SnowyDay} width={128} height={128} alt="Snowy Day" />
+    imgIcon = <Image src={SnowyIcon} width={128} height={128} alt="Snowy Day" />
   }
 
   return (
