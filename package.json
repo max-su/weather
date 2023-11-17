@@ -12,6 +12,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "recharts": "^2.9.3",
     "swr": "^2.2.4"
   },
   "devDependencies": {

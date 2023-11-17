@@ -3,7 +3,7 @@
 import {useState} from 'react';
 import useSWR from 'swr';
 import { WeatherHeadline } from './components/WeatherHeadline';
-import { Url } from 'url';
+import { WeatherGraph } from './components/WeatherGraph';
 
 
 export default function Home() {
@@ -30,7 +30,8 @@ export default function Home() {
   // https://stackoverflow.com/a/73558274
   let current_values = ['temperature', 'dew_point_2m', 'apparent_temperature', 'weather_code']
   url.searchParams.set('current','CURRENT_PLACEHOLDER')
-  let hourly_values = ['temperature_2m','dew_point_2m','apparent_temperature','precipitation_probability','precipitation','rain','showers','snowfall','snow_depth','weather_code','cloud_cover']
+  // let hourly_values = ['temperature_2m','dew_point_2m','apparent_temperature','precipitation_probability','precipitation','rain','showers','snowfall','snow_depth','weather_code','cloud_cover']
+  let hourly_values = ['temperature_2m','dew_point_2m','precipitation_probability']  
   url.searchParams.set('hourly', 'HOURLY_PLACEHOLDER')
   url.searchParams.set('temperature_unit', 'fahrenheit')
   url.searchParams.set('timezone', 'auto')
@@ -49,8 +50,13 @@ export default function Home() {
   if (longitude === null || latitude === null) {
     body = (
       <div className="mr-6 flex flex-shrink-0 items-center">
-        <button className="p-4 bg-rose-600 rounded-full text-white" onClick={askLocation}>Get Location</button>
+        <button className="p-4 bg-rose-600 rounded-full text-white items-center" onClick={askLocation}>Get Location</button>
       </div>
+    );
+    return (
+      <main className="flex min-h-screen flex-col bg-inherit items-center p-6">
+        {body}
+      </main>
     );
   }
   else if (error) {
@@ -65,19 +71,22 @@ export default function Home() {
   }
   else {
     body = (
-      <div>
-        <div className="mx-auto flex max-w-sm items-center bg-black p-6 shadow-lg">
+      <div className="place-items-flex">
+        <div className="mx-auto flex max-w-sm bg-black p-6 shadow-lg">
           <WeatherHeadline wmoCode={data.current.weather_code} temperature={data.current.temperature} apparentTemperature={data.current.apparent_temperature} dewPoint={data.current.dew_point_2m} />
         </div>
-        <div className="mx-auto flex max-w-sm items-center bg-black p-6 shadow-lg">
-          <p className="text-white">Longitude: {longitude}, Latitude: {latitude}</p>
+        <div className="mx-auto min-h-full max-h-full max-w-8xl min-w-8xl bg-black p-6 shadow-lg">
+          <WeatherGraph hourlyUnits={data.hourly_units} hourlyData={data.hourly} currentHour={`${data.current.time.substring(0, data.current.time.length - 3)}:00`}/>
+        </div>
+        <div className="mx-auto max-w-sm flex bg-black p-6 shadow-lg items-center">
+          <p className="text-white items-center">Longitude: {longitude}, Latitude: {latitude}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-inherit p-6">
+    <main className="flex min-h-screen flex-col bg-inherit p-6">
       {body}
     </main>
   );
