@@ -57,7 +57,7 @@ export const WeatherHeadline: React.FC<Props> = ({wmoCode, temperature, apparent
         <div className="text-5xl font-medium text-white">{temperature}°F</div>
         <div className="text-sm font-medium text-white">Feels {apparentTemperature}°F</div>
         <div className="text-sm font-medium text-white">Dew Point: {dewPoint}°F</div>
-        <div className="text-sm font-medium text-white">{paceAdjustmentRate === 100.0 ? "Running not recommended" : `Adjust running by ${paceAdjustmentRate}%`} </div>
+        <div className="text-sm font-medium text-white">{paceAdjustmentRate === 100.0 ? "Hard Running not recommended" : `Adjust running by ${paceAdjustmentRate}%`} </div>
       </div>
     </div>
   );
