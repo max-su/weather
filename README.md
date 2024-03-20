@@ -20,5 +20,3 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000).
 
 This application is written with [Next.JS App Router](https://nextjs.org/docs/app) with [Client Components](https://nextjs.org/docs/app/building-your-application/rendering/client-components) and makes API calls on the client side to [Open-Meteo API](https://open-meteo.com/) directly as it has a public endpoint that does not require a key.
-
-[Deploy to production with Vercel](https://nextjs.org/learn-pages-router/basics/deploying-nextjs-app/deploy)
